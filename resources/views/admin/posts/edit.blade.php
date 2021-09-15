@@ -10,6 +10,15 @@
     @error('title') <div class="btn btn-danger">{{ $message }}</div> @enderror
   </div>
   <div class="mb-3">
+    <label for="categories" class="form-label">categorie</label>
+    <select name="category_id" id="categories" class="form-control">
+      <option value=""></option>
+      @foreach($categories as $category)
+      <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->name}}</option>
+      @endforeach
+    </select>
+  </div>
+  <div class="mb-3">
     <label for="contenuto" class="form-label">contenuto</label>
     <textarea name="content" id="contenuto" cols="30" rows="10" class="form-control @error('content') is-invalid @enderror">{{ old('content', $post->content) }}</textarea>
     @error('content') <div class="btn btn-danger">{{ $message }}</div> @enderror
