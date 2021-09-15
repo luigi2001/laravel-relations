@@ -11,12 +11,13 @@
   </div>
   <div class="mb-3">
     <label for="categories" class="form-label">categorie</label>
-    <select name="category_id" id="categories" class="form-control">
+    <select name="category_id" id="categories" class="form-control @error('category_id') is-invalid @enderror">
       <option value=""></option>
       @foreach($categories as $category)
-      <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->name}}</option>
+      <option value="{{$category->id}}" @if($category->id == old('category_id', $post->category_id)) selected @endif>{{$category->name}}</option>
       @endforeach
     </select>
+    @error('category_id') <div class="btn btn-danger">{{ $message }}</div> @enderror
   </div>
   <div class="mb-3">
     <label for="contenuto" class="form-label">contenuto</label>

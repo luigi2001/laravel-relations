@@ -21,6 +21,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">titolo</th>
+      <th scope="col">categoria</th>
       <th scope="col">azioni</th>
     </tr>
   </thead>
@@ -29,6 +30,11 @@
     <tr>
       <th scope="row">{{ $post->id }}</th>
       <td><a href="{{ route('admin.posts.show',$post->slug ) }}">{{ $post->title }}</a></td>
+      <td>
+      @if($post->category)
+      {{ $post->category->name }}
+      @endif
+      </td>
       <td>
           <a href="{{ route('admin.posts.edit',$post->id ) }}" class="btn btn-warning">Edit</a>
           <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post" class="d-inline-block">
